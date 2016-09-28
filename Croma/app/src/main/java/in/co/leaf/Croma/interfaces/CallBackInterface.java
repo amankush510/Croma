@@ -6,4 +6,5 @@ package in.co.leaf.Croma.interfaces;
 public interface CallBackInterface {
     void loadPunchInOutFragment();
     void loadLoginFragment();
+    void loadCaptureResultFromCameraFragment();
 }

@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import in.co.leaf.Croma.R;
+import in.co.leaf.Croma.interfaces.CallBackInterface;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,9 +27,9 @@ import in.co.leaf.Croma.R;
 public class PunchInOutFragment extends Fragment {
     Context context;
 
-    public static final int REQUEST_CODE_TAKE_PICTURE = 0x2;
-
     Button but_punch_in, but_punch_out;
+
+    CallBackInterface callback;
 
     String deviceId = "";
     Long timestamp;
@@ -40,9 +41,17 @@ public class PunchInOutFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        context = activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity;
+        if (context instanceof Activity) {
+            activity = (Activity) context;
+            try {
+                callback = (CallBackInterface) activity;
+            } catch (ClassCastException e) {
+                throw new ClassCastException(activity.toString() + " must implement LandingConfigScreenInterface");
+            }
+        }
     }
 
     @Override
@@ -72,7 +81,7 @@ public class PunchInOutFragment extends Fragment {
         but_punch_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-
+                callback.loadCaptureResultFromCameraFragment();
             }
 
 
