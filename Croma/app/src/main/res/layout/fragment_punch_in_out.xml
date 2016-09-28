@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
-            android:layout_width="250dp"
-            android:layout_height="38dp"
             android:id="@+id/but_punch_in"
-            android:text="Punch In"/>
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:text="Punch In" />
 
         <Button
-            android:layout_width="250dp"
-            android:layout_height="38dp"
             android:id="@+id/but_punch_out"
-            android:text="Punch Out"/>
-        </LinearLayout>
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Punch Out" />
+    </LinearLayout>
 
 </LinearLayout>

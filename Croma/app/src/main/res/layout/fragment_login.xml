@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -30,8 +29,8 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password" />
+                android:hint="Password"
+                android:inputType="textPassword" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -39,15 +38,11 @@
         <Button
             android:id="@+id/but_login"
             android:layout_width="250dp"
-            android:layout_height="38dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:text="Login" />
 
-        <android.support.v4.widget.ContentLoadingProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/pg_logging"
-            android:visibility="gone"/>
     </LinearLayout>
 
 </LinearLayout>
