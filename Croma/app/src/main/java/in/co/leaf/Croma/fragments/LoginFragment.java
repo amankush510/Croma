@@ -22,6 +22,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import in.co.leaf.Croma.R;
 import in.co.leaf.Croma.interfaces.CallBackInterface;
 
@@ -88,33 +91,69 @@ public class LoginFragment extends Fragment {
         but_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-                username = et_username.getText().toString();
-                password = et_password.getText().toString();
-                pg_logging.setMessage("Logging In");
-                pg_logging.show();
-                mFirebaseAuth.signInWithEmailAndPassword(username, password)
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    callback.loadPunchInOutFragment();
-                                    pg_logging.hide();
-                                } else {
-                                    pg_logging.hide();
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                    builder.setMessage(task.getException().getMessage())
-                                            .setTitle("Error")
-                                            .setPositiveButton(android.R.string.ok, null);
-                                    AlertDialog dialog = builder.create();
-                                    dialog.show();
+                if (validate()) {
+                    InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+                    username = et_username.getText().toString();
+                    password = et_password.getText().toString();
+                    pg_logging.setMessage("Logging In");
+                    pg_logging.show();
+                    mFirebaseAuth.signInWithEmailAndPassword(username, password)
+                            .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        callback.loadPunchInOutFragment();
+                                        pg_logging.hide();
+                                    } else {
+                                        pg_logging.hide();
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                        builder.setMessage(task.getException().getMessage())
+                                                .setTitle("Error")
+                                                .setPositiveButton(android.R.string.ok, null);
+                                        AlertDialog dialog = builder.create();
+                                        dialog.show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
+                }
             }
         });
+
+
+    }
+    public boolean validate(){
+        boolean valid = true;
+        if(!isValidEmail(et_username.getText().toString())){
+            et_username.setError("Please enter a valid email");
+            valid = false;
+        }
+        else
+            et_username.setError(null);
+        if(et_password.getText().toString().isEmpty()){
+            et_password.setError("Please enter password");
+            valid = false;
+        }
+        else
+            et_password.setError(null);
+        return valid;
+
+    }
+
+    public static boolean isValidEmail(String email) {
+        email = email.trim();
+        String EMAIL_PATTERN =
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

@@ -17,7 +17,8 @@
                 android:id="@+id/et_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username" />
+                android:hint="Email"
+                android:inputType="textEmailAddress"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -30,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -38,10 +39,12 @@
         <Button
             android:id="@+id/but_login"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="Login" />
+            android:layout_marginTop="40dp"
+            android:text="Login"
+            android:textColor="#ffffff"
+            android:background="#ff9800"/>
 
     </LinearLayout>
 

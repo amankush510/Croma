@@ -13,15 +13,20 @@
         <Button
             android:id="@+id/but_punch_in"
             android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:text="Punch In" />
+            android:layout_height="38dp"
+            android:text="Punch In"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="20dp"
+            android:background="#ff9800"/>
 
         <Button
             android:id="@+id/but_punch_out"
             android:layout_width="250dp"
-            android:layout_height="50dp"
+            android:layout_height="38dp"
             android:layout_marginTop="20dp"
-            android:text="Punch Out" />
+            android:text="Punch Out"
+            android:textColor="#ffffff"
+            android:background="#ff9800"/>
     </LinearLayout>
 
 </LinearLayout>
